@@ -1,0 +1,62 @@
+[
+    {
+        "timestamp": "2026-05-15T17:09:10.259598",
+        "candidato": "prueba",
+        "score": 3,
+        "total": 10,
+        "percentage": 30.0,
+        "level": "Junior / Analista Básico",
+        "answers": {
+            "1": "Las subconsultas en el WHERE impiden que el motor de base de datos utilice índices preexistentes.",
+            "2": "CALCULATE([Total Sales], DATESYTD('Date'[Date]))",
+            "3": "Convertir el DataFrame a una lista de diccionarios y procesarlo.",
+            "4": "Trigger: 'Recurrence' cada 5 minutos con una condición de búsqueda de archivo.",
+            "5": "Porque reduce la cantidad de uniones (joins) necesarias, mejorando el rendimiento de las medidas DAX y la facilidad de uso para el usuario final.",
+            "6": "Pearson puede estar sobreestimando la relación lineal; se debería considerar una transformación de variables o un coeficiente de Spearman.",
+            "7": "Usar un gráfico que resalte claramente la anomalía, acompañado de una narrativa breve que explique la causa y una recomendación de acción.",
+            "8": "Usar un GROUP BY y filtrar aquellos que tengan una cuenta de meses igual a 1.",
+            "9": "Direct Lake es el único modo que permite usar Python dentro de los reportes de Power BI.",
+            "10": "Pedirle al equipo que deje de usar sus archivos manuales inmediatamente por orden de la gerencia."
+        }
+    },
+    {
+        "timestamp": "2026-05-19T09:06:15.063489",
+        "candidato": "Clara Lopez",
+        "score": 7,
+        "total": 10,
+        "percentage": 70.0,
+        "level": "Mid / Semi-Senior Data Analyst",
+        "answers": {
+            "1": "Los CTEs mejoran principalmente la legibilidad y permiten recursividad, mientras que el optimizador suele tratar a ambos de forma similar en consultas simples.",
+            "2": "TOTALYTD([Total Sales], 'Date'[Date], \"06-30\")",
+            "3": "Usar df.groupby() en todas las columnas para reducir el tamaño antes de limpiar.",
+            "4": "Trigger: 'When a file is created (properties only)' en SharePoint seguido de la acción 'Refresh a Power BI dataset'.",
+            "5": "Porque reduce la cantidad de uniones (joins) necesarias, mejorando el rendimiento de las medidas DAX y la facilidad de uso para el usuario final.",
+            "6": "No existe ninguna relación entre las variables si el gráfico no es una línea recta perfecta.",
+            "7": "Usar un gráfico que resalte claramente la anomalía, acompañado de una narrativa breve que explique la causa y una recomendación de acción.",
+            "8": "Un FULL OUTER JOIN entre la tabla de este mes y la del mes pasado.",
+            "9": "Permite analizar volúmenes masivos de datos directamente desde OneLake sin necesidad de importarlos, manteniendo el rendimiento de alta velocidad.",
+            "10": "Realizar un ejercicio de 'Lineage' y conciliación de datos para identificar la fuente de la discrepancia y explicar las reglas de negocio aplicadas."
+        }
+    },
+    {
+        "timestamp": "2026-05-19T10:41:33.842823",
+        "candidato": "JUAN JOSE GARCIA ",
+        "score": 7,
+        "total": 10,
+        "percentage": 70.0,
+        "level": "Mid / Semi-Senior Data Analyst",
+        "answers": {
+            "1": "Los CTEs mejoran principalmente la legibilidad y permiten recursividad, mientras que el optimizador suele tratar a ambos de forma similar en consultas simples.",
+            "2": "SAMEPERIODLASTYEAR(TOTALYTD([Total Sales], 'Date'[Date]))",
+            "3": "Usar df.groupby() en todas las columnas para reducir el tamaño antes de limpiar.",
+            "4": "Trigger: 'When a file is created (properties only)' en SharePoint seguido de la acción 'Refresh a Power BI dataset'.",
+            "5": "Porque reduce la cantidad de uniones (joins) necesarias, mejorando el rendimiento de las medidas DAX y la facilidad de uso para el usuario final.",
+            "6": "Pearson puede estar sobreestimando la relación lineal; se debería considerar una transformación de variables o un coeficiente de Spearman.",
+            "7": "Incluir todas las tablas de datos posibles para que la gerencia pueda investigar por su cuenta.",
+            "8": "Un SELECT de los clientes actuales con una cláusula EXCEPT (o MINUS) que reste los clientes del mes pasado.",
+            "9": "Permite analizar volúmenes masivos de datos directamente desde OneLake sin necesidad de importarlos, manteniendo el rendimiento de alta velocidad.",
+            "10": "Realizar un ejercicio de 'Lineage' y conciliación de datos para identificar la fuente de la discrepancia y explicar las reglas de negocio aplicadas."
+        }
+    }
+]
