@@ -57,26 +57,7 @@
             "8": "Un SELECT de los clientes actuales con una cláusula EXCEPT (o MINUS) que reste los clientes del mes pasado.",
             "9": "Permite analizar volúmenes masivos de datos directamente desde OneLake sin necesidad de importarlos, manteniendo el rendimiento de alta velocidad.",
             "10": "Realizar un ejercicio de 'Lineage' y conciliación de datos para identificar la fuente de la discrepancia y explicar las reglas de negocio aplicadas."
-        },
-    {
-        "timestamp": "2026-05-19T03:41:33.842824",
-        "candidato": "LUIS KENDOR NARVAEZ ",
-        "score": 6,
-        "total": 10,
-        "percentage": 60.0,
-        "level": "Mid / Semi-Senior Data Analyst",
-        "answers": {
-            "1": "Los CTEs mejoran principalmente la legibilidad y permiten recursividad, mientras que el optimizador suele tratar a ambos de forma similar en consultas simples.",
-            "2": "SAMEPERIODLASTYEAR(TOTALYTD([Total Sales], 'Date'[Date]))",
-            "3": "Usar df.groupby() en todas las columnas para reducir el tamaño antes de limpiar.",
-            "4": "Trigger: 'When a file is created (properties only)' en SharePoint seguido de la acción 'Refresh a Power BI dataset'.",
-            "5": "Porque reduce la cantidad de uniones (joins) necesarias, mejorando el rendimiento de las medidas DAX y la facilidad de uso para el usuario final.",
-            "6": "Pearson puede estar sobreestimando la relación lineal; se debería considerar una transformación de variables o un coeficiente de Spearman.",
-            "7": "Incluir todas las tablas de datos posibles para que la gerencia pueda investigar por su cuenta.",
-            "8": "Un SELECT de los clientes actuales con una cláusula EXCEPT (o MINUS) que reste los clientes del mes pasado.",
-            "9": "Direct Lake es el único modo que permite usar Python dentro de los reportes de Power BI.",
-            "10": "Realizar un ejercicio de 'Lineage' y conciliación de datos para identificar la fuente de la discrepancia y explicar las reglas de negocio aplicadas."
         }
-        }
+
     }
 ]
