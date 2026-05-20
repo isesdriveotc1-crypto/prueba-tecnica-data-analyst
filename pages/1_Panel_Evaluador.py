@@ -1,6 +1,8 @@
 import streamlit as st
 import json
 import os
+from fpdf import FPDF
+import os
 
 st.set_page_config(page_title="Panel Evaluador", page_icon="🔐", layout="wide")
 
@@ -71,6 +73,69 @@ def check_password():
     else:
         return True
 
+def generate_pdf_report(cand_data, questions_db):
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("helvetica", "B", 16)
+    pdf.set_text_color(26, 42, 108)
+    
+    # Manejar posibles problemas de codificación de caracteres pasando a ascii ignorando acentos si falla
+    # Pero fpdf2 maneja utf-8 con fuentes TTF integradas u opciones básicas.
+    
+    pdf.cell(0, 10, "Reporte de Prueba Tecnica: Data Analyst", ln=True, align="C")
+    
+    pdf.set_font("helvetica", "", 12)
+    pdf.set_text_color(100, 100, 100)
+    pdf.cell(0, 10, f"Fecha de realizacion: {cand_data['timestamp'][:10]} a las {cand_data['timestamp'][11:16]}", ln=True, align="C")
+    pdf.ln(10)
+    
+    pdf.set_fill_color(240, 240, 240)
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_font("helvetica", "B", 14)
+    pdf.cell(0, 10, f"Candidato: {cand_data['candidato']}", ln=True, fill=True)
+    pdf.set_font("helvetica", "", 12)
+    pdf.cell(0, 8, f"Puntaje: {cand_data['score']} / {cand_data['total']} ({cand_data['percentage']:.0f}%)", ln=True, fill=True)
+    pdf.cell(0, 8, f"Nivel Clasificado: {cand_data['level']}", ln=True, fill=True)
+    pdf.ln(10)
+    
+    pdf.set_font("helvetica", "B", 14)
+    pdf.set_text_color(26, 42, 108)
+    pdf.cell(0, 10, "Desglose de Respuestas", ln=True)
+    pdf.ln(5)
+    
+    for q_id_str, user_ans in cand_data.get("answers", {}).items():
+        q_info = questions_db.get(str(q_id_str), {"q": f"Pregunta {q_id_str}", "a": "Desconocida"})
+        is_correct = (user_ans == q_info["a"])
+        
+        pdf.set_font("helvetica", "B", 11)
+        pdf.set_text_color(0, 0, 0)
+        q_text = f"Pregunta {q_id_str}: {q_info['q']}".encode('latin-1', 'replace').decode('latin-1')
+        pdf.write(6, q_text)
+        pdf.ln(8)
+        
+        pdf.set_font("helvetica", "", 11)
+        pdf.set_text_color(50, 50, 50)
+        user_ans_clean = f"Su respuesta: {user_ans}".encode('latin-1', 'replace').decode('latin-1')
+        pdf.write(6, user_ans_clean)
+        pdf.ln(8)
+        
+        if not is_correct:
+            pdf.set_text_color(220, 53, 69) # Red
+            pdf.write(6, "Estado: INCORRECTA")
+            pdf.ln(6)
+            pdf.set_text_color(40, 167, 69) # Green
+            correct_ans_clean = f"Respuesta correcta: {q_info['a']}".encode('latin-1', 'replace').decode('latin-1')
+            pdf.write(6, correct_ans_clean)
+            pdf.ln(6)
+        else:
+            pdf.set_text_color(40, 167, 69) # Green
+            pdf.write(6, "Estado: CORRECTA")
+            pdf.ln(6)
+            
+        pdf.ln(5)
+        
+    return pdf.output()
+
 if check_password():
     st.title("📊 Panel de Control: Resultados de Evaluaciones")
     
@@ -124,7 +189,19 @@ if check_password():
                 unsafe_allow_html=True
             )
             
-            st.subheader("Desglose de Respuestas")
+            col1, col2 = st.columns([2, 1])
+            with col1:
+                st.subheader("Desglose de Respuestas")
+            with col2:
+                pdf_report_bytes = generate_pdf_report(cand_data, questions_db)
+                st.download_button(
+                    label="📄 Descargar Reporte en PDF",
+                    data=bytes(pdf_report_bytes),
+                    file_name=f"Reporte_DataAnalyst_{cand_data['candidato'].replace(' ', '_')}.pdf",
+                    mime="application/pdf",
+                    use_container_width=True
+                )
+                
             answers = cand_data.get("answers", {})
             
             # Show a filter to view only errors
